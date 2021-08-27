@@ -1,4 +1,5 @@
-# Tensorflow 2 Object Counting
+# Mas Saco System
+# Using Tensorflow 2 Object Counting
 
 Cummulative object counting with Tensorflow 2 and Tensorflow Lite.
 
@@ -7,19 +8,19 @@ Cummulative object counting with Tensorflow 2 and Tensorflow Lite.
 ## Installation
 
 1. Clone the repository 
-   ```git clone https://github.com/TannerGilbert/Tensorflow-2-Object-Counting```
+   ```git clone https://github.com/ujangsprr/Mas_Saco_System```
 
 2. [Install the Tensorflow Object Detection API](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2.md#installation)
 
 3. Install dependencies
    ```
-   cd Tensorflow-2-Object-Counting
+   cd Mas_Saco_System
    pip3 install -r requirements.txt
    ```
 
 ## Cumulative counting with Tensorflow
 
-To run cumulative counting with a Tensorflow object detection model use the [`tensorflow_cumulative_object_counting.py` script](tensorflow_cumulative_object_counting.py).
+To run cumulative counting with a Tensorflow object detection model use the [`main.py` script](tensorflow_cumulative_object_counting.py).
 
 ```
 usage: tensorflow_cumulative_object_counting.py [-h] -m MODEL -l LABELMAP [-v VIDEO_PATH] [-t THRESHOLD] [-roi ROI_POSITION] [-la LABELS [LABELS ...]] [-a] [-s SKIP_FRAMES] [-sh] [-sp SAVE_PATH]
@@ -49,13 +50,13 @@ optional arguments:
 ```
 
 Example:
-    `python tensorflow_cumulative_object_counting.py -m model_path/saved_model -l labelmap.pbtxt -v video.mp4 -a`
+    `python main.py -m model_path/saved_model -l labelmap.pbtxt -v video.mp4 -a`
 
 [![Tensorflow cumulative object counting example](doc/tensorflow_x_axis_person_counting.gif)](https://youtu.be/UN7wRNDjvSg)
 
 ## Cumulative counting with Tensorflow Lite
 
-To run cumulative counting with a Tensorflow Lite model use the [`tflite_cumulative_object_counting.py` script](tflite_cumulative_object_counting.py).
+To run cumulative counting with a Tensorflow Lite model use the [`tflite_main.py` script](tflite_main.py).
 
 ```
 usage: tflite_cumulative_object_counting.py [-h] -m MODEL -l LABELMAP [-v VIDEO_PATH] [-t THRESHOLD] [-roi ROI_POSITION] [-la LABELS [LABELS ...]] [-a] [-e] [-s SKIP_FRAMES] [-sh] [-sp SAVE_PATH] [--type {tensorflow,yolo,yolov3-tiny}]
@@ -86,7 +87,7 @@ optional arguments:
 ```
 
 Example:
-    `python tflite_cumulative_object_counting.py -m model.tflite -l labelmap.txt -v video.mp4 -a`
+    `python tflite_main.py -m model.tflite -l labelmap.txt -v video.mp4 -a`
 
 [![TFLITE cumulative object counting example](doc/tflite_x_axis_person_counting.gif)](https://youtu.be/cqyOgifVqZs)
 
