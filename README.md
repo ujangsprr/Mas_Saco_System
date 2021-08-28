@@ -4,10 +4,10 @@
 Cummulative object counting with Tensorflow 2 and Tensorflow Lite.
 
 ## Documentation
-![Cumulative counting example](doc/start.PNG)
-![Cumulative counting example](doc/end.PNG)
-![Cumulative counting example](doc/vid1.PNG)
-![Cumulative counting example](doc/vid2.PNG)
+![Cumulative counting example](doc/start.png)
+![Cumulative counting example](doc/end.png)
+![Cumulative counting example](doc/vid1.png)
+![Cumulative counting example](doc/vid2.png)
 
 ## Installation
 
