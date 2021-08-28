@@ -1,4 +1,4 @@
-# python3 tensorflow_cumulative_object_counting.py -m ssd_mobilenet_v2_320x320_coco17_tpu-8/saved_model -l mscoco_label_map.pbtxt -v example.mp4 
+# python3 main.py -m ssd_mobilenet_v2_320x320_coco17_tpu-8/saved_model -l mscoco_label_map.pbtxt -v example.mp4 
 
 import cv2
 import numpy as np
@@ -16,9 +16,7 @@ from trackable_object import TrackableObject
 from centroidtracker import CentroidTracker
 
 # Swab Test Location
-id = 1
-nama = 'pkm_mulyorejo'
-lokasi = 'Puskemas Mulyorejo Surabaya'
+id = 3
 
 # database
 url_con = 'http://localhost/massaco/connect.php'
@@ -30,7 +28,7 @@ utils_ops.tf = tf.compat.v1
 # Patch the location of gfile
 tf.gfile = tf.io.gfile
 
-# Globak Variable
+# Global Variable
 send = 0
 check = 0
 
@@ -38,7 +36,6 @@ def load_model(model_path):
     tf.keras.backend.clear_session()
     model = tf.saved_model.load(model_path)
     return model
-
 
 def run_inference_for_single_image(model, image):
     image = np.asarray(image)
@@ -91,27 +88,41 @@ def run_inference(model, category_index, cap, labels, roi_position=0.6, threshol
         out = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(
             'M', 'J', 'P', 'G'), fps, (width, height))
 
+    if(id == 1):
+        nama = 'pkm_mulyorejo'
+        lokasi = 'Puskemas Mulyorejo Surabaya'
+    elif(id == 2):
+        nama = 'pkm_keputih'
+        lokasi = 'Puskemas Keputih Surabaya'
+    elif(id == 3):
+        nama = 'pkm_dr_soetomo'
+        lokasi = 'Puskemas Dr. Soetomo Surabaya'
+    elif(id == 4):
+        nama = 'pkm_kenjeran'
+        lokasi = 'Puskemas Kenjeran Surabaya'
+
     print()
     print()
     print("====================================================================")
-    print("====================================================================")
-    print()
+    print("====================                            ====================")
     print("====================  Mas Saco System Starting  ====================")
-    print()
+    print("====================                            ====================")
     print("====================================================================")
-    print("====================================================================")
     print()
-
-    requests.get(url_con)
-    print("Connected to database")
-
+    
     named_tuple = time.localtime() # get struct_time
     time_daynow = time.strftime("%m/%d/%Y", named_tuple)
     time_string = time.strftime("%H:%M:%S", named_tuple)
 
+    print("System Start at")
+    print("id       :", id)
+    print("nama     :", nama)
     print("Waktu    :", time_string)
     print("Tanggal  :", time_daynow)
+    print("Lokasi   :", lokasi)
 
+    requests.get(url_con)
+    print("Status   : Connected to database")
     print()
     print("====================================================================")
     print()
@@ -203,15 +214,35 @@ def run_inference(model, category_index, cap, labels, roi_position=0.6, threshol
             cv2.line(image_np, (0, int(roi_position*height)),
                      (width, int(roi_position*height)), (0xFF, 0, 0), 5)
 
-        # display count and status
-        total_keramaian = counter[0] + counter[1]
-
+        # Timer
         named_tuple = time.localtime() # get struct_time
         time_daynam = time.strftime("%A", named_tuple)
         time_daynow = time.strftime("%m/%d/%Y", named_tuple)
         time_string = time.strftime("%H:%M:%S", named_tuple)
         time_second = time.strftime("%S", named_tuple)
 
+        # display count and status
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        if x_axis:
+            total_keramaian = counter[1] - counter[0]
+            cv2.putText(image_np, f'Kiri: {counter[0]}; Kanan: {counter[1]}', (
+                10, 35), font, 0.8, (0, 0xFF, 0xFF), 2, cv2.FONT_HERSHEY_SIMPLEX)
+        else:
+            total_keramaian = counter[3] - counter[2]
+            cv2.putText(image_np, f'Up: {counter[2]}; Down: {counter[3]}', (
+                10, 35), font, 0.8, (0, 0xFF, 0xFF), 2, cv2.FONT_HERSHEY_SIMPLEX)
+        cv2.putText(image_np, 'Status: ' + status, (10, 70), font,
+                    0.8, (0, 0xFF, 0xFF), 2, cv2.FONT_HERSHEY_SIMPLEX)
+        cv2.putText(image_np, f'Total: {total_keramaian}', (10, 110), font,
+                    0.8, (0, 0xFF, 0xFF), 2, cv2.FONT_HERSHEY_SIMPLEX)
+        cv2.putText(image_np, f'Time: {time_string}', (10, 150), font,
+                    0.8, (0, 0xFF, 0xFF), 2, cv2.FONT_HERSHEY_SIMPLEX)
+        cv2.putText(image_np, f'Date: {time_daynow}', (10, 190), font,
+                    0.8, (0, 0xFF, 0xFF), 2, cv2.FONT_HERSHEY_SIMPLEX)
+        if( total_keramaian < 1):
+            total_keramaian = 0
+
+        # Send to database
         if(time_second == "00"):
             send = 1
         else:
@@ -221,14 +252,20 @@ def run_inference(model, category_index, cap, labels, roi_position=0.6, threshol
             if(send != check):
                 print()
                 print("====================================================================")
-                print("Lokasi Puskesmas :", lokasi)
-                print("Hari             :", time_daynam)
-                print("Tanggal          :", time_daynow)
-                print("Waktu            :", time_string)
+                print("Lokasi   :", lokasi)
+                print("Hari     :", time_daynam)
+                print("Tanggal  :", time_daynow)
+                print("Waktu    :", time_string)
                 print("====================================================================")
                 print("========================  Total Keramaian  =========================")
-                print("Kiri    : " + str(counter[0]) + " orang")
-                print("Kanan   : " + str(counter[1]) + " orang")
+                
+                if x_axis:
+                    print("Masuk   : " + str(counter[1]) + " orang")
+                    print("Keluar  : " + str(counter[0]) + " orang")
+                else:
+                    print("Masuk   : " + str(counter[3]) + " orang")
+                    print("Keluar  : " + str(counter[2]) + " orang")
+
                 print("Total   : " + str(total_keramaian) + " orang")
                 print("====================================================================")
                 print("Send to database...")
@@ -240,23 +277,13 @@ def run_inference(model, category_index, cap, labels, roi_position=0.6, threshol
         else:
             check = 0
 
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        if x_axis:
-            cv2.putText(image_np, f'Kiri: {counter[0]}; Kanan: {counter[1]}', (
-                10, 35), font, 0.8, (0, 0xFF, 0xFF), 2, cv2.FONT_HERSHEY_SIMPLEX)
-        else:
-            cv2.putText(image_np, f'Up: {counter[2]}; Down: {counter[3]}', (
-                10, 35), font, 0.8, (0, 0xFF, 0xFF), 2, cv2.FONT_HERSHEY_SIMPLEX)
-        cv2.putText(image_np, 'Status: ' + status, (10, 70), font,
-                    0.8, (0, 0xFF, 0xFF), 2, cv2.FONT_HERSHEY_SIMPLEX)
-        cv2.putText(image_np, f'Total: {total_keramaian}', (10, 110), font,
-                    0.8, (0, 0xFF, 0xFF), 2, cv2.FONT_HERSHEY_SIMPLEX)
-
         if show:
             cv2.imshow('Mas Saco System', image_np)
             if cv2.waitKey(25) & 0xFF == ord('q'):
+                print()
                 print("====================================================================")
                 print("=================      Mas Saco System Stoped      =================")
+                print("=================       " + time_string + "  " + time_daynow + "       =================")
                 print("=================  Copyright 2021 @ Yuk Swab Team  =================")
                 print("====================================================================")
                 break
