@@ -27,7 +27,7 @@ Cummulative object counting with Tensorflow 2 and Tensorflow Lite.
 To run cumulative counting with a Tensorflow object detection model use the [`main.py` script](main.py).
 
 ```
-usage: tensorflow_cumulative_object_counting.py [-h] -m MODEL -l LABELMAP [-v VIDEO_PATH] [-t THRESHOLD] [-roi ROI_POSITION] [-la LABELS [LABELS ...]] [-a] [-s SKIP_FRAMES] [-sh] [-sp SAVE_PATH]
+usage: main.py [-h] -m MODEL -l LABELMAP [-v VIDEO_PATH] [-t THRESHOLD] [-roi ROI_POSITION] [-la LABELS [LABELS ...]] [-a] [-s SKIP_FRAMES] [-sh] [-sp SAVE_PATH]
 
 Detect objects inside webcam videostream
 
@@ -63,7 +63,7 @@ Example:
 To run cumulative counting with a Tensorflow Lite model use the [`tflite_main.py` script](tflite_main.py).
 
 ```
-usage: tflite_cumulative_object_counting.py [-h] -m MODEL -l LABELMAP [-v VIDEO_PATH] [-t THRESHOLD] [-roi ROI_POSITION] [-la LABELS [LABELS ...]] [-a] [-e] [-s SKIP_FRAMES] [-sh] [-sp SAVE_PATH] [--type {tensorflow,yolo,yolov3-tiny}]
+usage: tflite_main.py [-h] -m MODEL -l LABELMAP [-v VIDEO_PATH] [-t THRESHOLD] [-roi ROI_POSITION] [-la LABELS [LABELS ...]] [-a] [-e] [-s SKIP_FRAMES] [-sh] [-sp SAVE_PATH] [--type {tensorflow,yolo,yolov3-tiny}]
 
 optional arguments:
   -h, --help            show this help message and exit
