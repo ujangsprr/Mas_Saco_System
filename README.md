@@ -3,7 +3,11 @@
 
 Cummulative object counting with Tensorflow 2 and Tensorflow Lite.
 
-![Cumulative counting example](doc/cumulative_object_counting.PNG)
+## Documentation
+![Cumulative counting example](doc/start.PNG)
+![Cumulative counting example](doc/end.PNG)
+![Cumulative counting example](doc/vid1.PNG)
+![Cumulative counting example](doc/vid2.PNG)
 
 ## Installation
 
@@ -20,7 +24,7 @@ Cummulative object counting with Tensorflow 2 and Tensorflow Lite.
 
 ## Cumulative counting with Tensorflow
 
-To run cumulative counting with a Tensorflow object detection model use the [`main.py` script](tensorflow_cumulative_object_counting.py).
+To run cumulative counting with a Tensorflow object detection model use the [`main.py` script](main.py).
 
 ```
 usage: tensorflow_cumulative_object_counting.py [-h] -m MODEL -l LABELMAP [-v VIDEO_PATH] [-t THRESHOLD] [-roi ROI_POSITION] [-la LABELS [LABELS ...]] [-a] [-s SKIP_FRAMES] [-sh] [-sp SAVE_PATH]
