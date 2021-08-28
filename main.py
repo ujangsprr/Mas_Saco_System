@@ -1,4 +1,4 @@
-# python3 main.py -m ssd_mobilenet_v2_320x320_coco17_tpu-8/saved_model -l mscoco_label_map.pbtxt -v example.mp4 
+# python3 main.py -m ssd_mobilenet_v2_320x320_coco17_tpu-8/saved_model -l mscoco_label_map.pbtxt -t 0.5 -roi 0.5 -v example.mp4 -a
 
 import cv2
 import numpy as np
