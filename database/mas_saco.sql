@@ -24,27 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pkm_dr_soetomo`
---
-
-CREATE TABLE `pkm_dr_soetomo` (
-  `id` int(11) NOT NULL,
-  `waktu` varchar(50) NOT NULL,
-  `hari` varchar(50) NOT NULL,
-  `tanggal` varchar(50) NOT NULL,
-  `keramaian` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pkm_dr_soetomo`
---
-
-INSERT INTO `pkm_dr_soetomo` (`id`, `waktu`, `hari`, `tanggal`, `keramaian`) VALUES
-(1, '19:00:00', 'Sabtu', '08/28/2021', 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `pkm_kenjeran`
 --
 
@@ -62,6 +41,27 @@ CREATE TABLE `pkm_kenjeran` (
 
 INSERT INTO `pkm_kenjeran` (`id`, `waktu`, `hari`, `tanggal`, `keramaian`) VALUES
 (1, '18:28:00', 'Sabtu', '08/28/2021', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pkm_dr_soetomo`
+--
+
+CREATE TABLE `pkm_dr_soetomo` (
+  `id` int(11) NOT NULL,
+  `waktu` varchar(50) NOT NULL,
+  `hari` varchar(50) NOT NULL,
+  `tanggal` varchar(50) NOT NULL,
+  `keramaian` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pkm_dr_soetomo`
+--
+
+INSERT INTO `pkm_dr_soetomo` (`id`, `waktu`, `hari`, `tanggal`, `keramaian`) VALUES
+(1, '19:00:00', 'Sabtu', '08/28/2021', 1);
 
 -- --------------------------------------------------------
 
@@ -103,31 +103,7 @@ CREATE TABLE `pkm_mulyorejo` (
 --
 
 INSERT INTO `pkm_mulyorejo` (`id`, `waktu`, `hari`, `tanggal`, `keramaian`) VALUES
-(1, '20:15:00', 'Jumat', '08/27/2021', 0),
-(2, '20:17:00', 'Jumat', '08/27/2021', 0),
-(3, '20:22:00', 'Jumat', '08/27/2021', 1),
-(4, '20:23:00', 'Jumat', '08/27/2021', 2),
-(5, '20:24:00', 'Jumat', '08/27/2021', 2),
-(6, '20:31:00', 'Jumat', '08/27/2021', 1),
-(7, '20:34:00', 'Jumat', '08/27/2021', 0),
-(8, '20:36:00', 'Jumat', '08/27/2021', 0),
-(9, '20:39:00', 'Jumat', '08/27/2021', 1),
-(10, '20:40:00', 'Jumat', '08/27/2021', 0),
-(11, '20:42:00', 'Jumat', '08/27/2021', 1),
-(12, '20:51:00', 'Jumat', '08/27/2021', 0),
-(13, '21:36:00', 'Jumat', '08/27/2021', 0),
-(14, '21:37:00', 'Jumat', '08/27/2021', 0),
-(15, '21:59:00', 'Jumat', '08/27/2021', 0),
-(16, '22:00:00', 'Jumat', '08/27/2021', 0),
-(17, '22:01:00', 'Jumat', '08/27/2021', 0),
-(18, '16:47:00', 'Sabtu', '08/28/2021', 1),
-(19, '16:48:00', 'Sabtu', '08/28/2021', 3),
-(20, '17:09:00', 'Sabtu', '08/28/2021', 0),
-(21, '17:13:00', 'Sabtu', '08/28/2021', 9),
-(22, '17:20:00', 'Sabtu', '08/28/2021', 2),
-(23, '17:25:00', 'Sabtu', '08/28/2021', 4),
-(24, '17:26:00', 'Sabtu', '08/28/2021', 0),
-(25, '17:28:00', 'Sabtu', '08/28/2021', 3);
+(1, '17:28:00', 'Sabtu', '08/28/2021', 3);
 
 -- --------------------------------------------------------
 
@@ -196,15 +172,15 @@ ALTER TABLE `tempat_swab`
 --
 
 --
--- AUTO_INCREMENT for table `pkm_dr_soetomo`
---
-ALTER TABLE `pkm_dr_soetomo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `pkm_kenjeran`
 --
 ALTER TABLE `pkm_kenjeran`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `pkm_dr_soetomo`
+--
+ALTER TABLE `pkm_dr_soetomo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -217,7 +193,7 @@ ALTER TABLE `pkm_keputih`
 -- AUTO_INCREMENT for table `pkm_mulyorejo`
 --
 ALTER TABLE `pkm_mulyorejo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tempat_swab`
